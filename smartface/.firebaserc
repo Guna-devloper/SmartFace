@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "smartface-com"
-  }
+    "default": "smartface-com",
+    "staging": "smartface-com-d395d"
+  },
+  "targets": {},
+  "etags": {}
 }
