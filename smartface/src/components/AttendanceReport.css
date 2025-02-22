@@ -1,0 +1,111 @@
+/* ✅ General Styling */
+body {
+    background: linear-gradient(to right, #1e1e1e, #3a3a3a); /* Dark gradient */
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+  }
+  
+  /* ✅ Attendance Card Styling */
+  .attendance-card {
+    background: rgba(255, 255, 255, 0.1); /* Transparent Glass Effect */
+    border-radius: 12px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .attendance-card:hover {
+    transform: scale(1.03); /* Slight zoom on hover */
+  }
+  
+  /* ✅ Input Field Styling */
+  .form-control {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .form-control:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* ✅ Buttons */
+  .start-btn, .stop-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .start-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+  }
+  
+  .start-btn:hover {
+    background: #45a049;
+  }
+  
+  .stop-btn {
+    background: #d9534f;
+    color: white;
+    border: none;
+  }
+  
+  .stop-btn:hover {
+    background: #c9302c;
+  }
+  
+  /* ✅ Video Feed */
+  .video-feed {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+  }
+  
+  /* ✅ Responsive Design */
+  @media (max-width: 768px) {
+    .attendance-card {
+      width: 95%;
+    }
+  
+    .video-feed {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .attendance-card {
+      padding: 15px;
+    }
+  
+    .form-control {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .start-btn, .stop-btn {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+  

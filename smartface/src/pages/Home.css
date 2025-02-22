@@ -1,0 +1,91 @@
+/* ✅ General Styling */
+body {
+    background: linear-gradient(to right, #1e1e1e, #3a3a3a); /* Dark gradient */
+    color: white;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+  }
+  
+  /* ✅ Home Container */
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  /* ✅ Title Styling */
+  .home-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .home-title span {
+    color: #4caf50; /* Green Highlight */
+  }
+  
+  /* ✅ Subtitle */
+  .home-subtitle {
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 30px;
+  }
+  
+  /* ✅ Button Group */
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  /* ✅ Buttons */
+  .enroll-btn, .attendance-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .enroll-btn {
+    background: #4caf50;
+    color: white;
+  }
+  
+  .enroll-btn:hover {
+    background: #45a049;
+  }
+  
+  .attendance-btn {
+    background: #007bff;
+    color: white;
+  }
+  
+  .attendance-btn:hover {
+    background: #0056b3;
+  }
+  
+  /* ✅ Responsive Design */
+  @media (max-width: 480px) {
+    .home-title {
+      font-size: 24px;
+    }
+  
+    .home-subtitle {
+      font-size: 14px;
+    }
+  
+    .enroll-btn, .attendance-btn {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  

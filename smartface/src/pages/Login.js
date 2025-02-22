@@ -17,7 +17,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("✅ Login Successful!");
-      navigate("/attendance-tracker");
+      navigate("/home");
     } catch (error) {
       console.error("Login Error:", error.message);
       toast.error("❌ " + error.message);

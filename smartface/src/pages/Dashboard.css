@@ -1,0 +1,25 @@
+.table th, .table td {
+    text-align: center;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  h4 span {
+    font-weight: bold;
+  }
+  
+  h2 {
+    color: #343a40;
+  }
+  
+  .form-control {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+  
