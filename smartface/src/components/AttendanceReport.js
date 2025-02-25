@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaceDetection } from "@mediapipe/face_detection";
 import { Camera } from "@mediapipe/camera_utils";
-import { db } from "../firebase"; // Firebase DB
-import { collection, getDocs, addDoc, query, where } from "firebase/firestore"; // Firestore Queries
-import { ToastContainer, toast } from "react-toastify"; // Notifications
+import { db } from "../firebase";
+import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Card, Container } from "react-bootstrap"; // UI Components
-import "./AttendanceReport.css"; // Custom Styles
+import { Button, Card, Container } from "react-bootstrap";
+import "./AttendanceReport.css";
 
 const AttendanceReport = () => {
   const videoRef = useRef(null);
@@ -40,10 +40,14 @@ const AttendanceReport = () => {
           // ✅ Check Firestore for Roll Number & Validate Face Data
           const isUserValid = await verifyUser(rollNo, results.detections);
           if (isUserValid) {
-            toast.success("✅ Attendance Verified: Marked Present!", { autoClose: 3000 });
+            toast.success("✅ Attendance Verified: Marked Present!", {
+              autoClose: 3000,
+            });
             await markAttendance(rollNo, "Present");
           } else {
-            toast.error("❌ Face or Roll No Not Verified: Marked Absent!", { autoClose: 3000 });
+            toast.error("❌ Face or Roll No Not Verified: Marked Absent!", {
+              autoClose: 3000,
+            });
             await markAttendance(rollNo, "Absent");
           }
 
@@ -77,8 +81,8 @@ const AttendanceReport = () => {
   // ✅ FUNCTION TO VERIFY USER (Check Roll No & Face Data)
   const verifyUser = async (rollNo, faceData) => {
     try {
-      // ✅ Fetch stored face data from Firestore
-      const usersRef = collection(db, "students"); // Assuming "students" collection stores face data
+      console.log("🔍 Fetching student data from Firestore...");
+      const usersRef = collection(db, "students");
       const q = query(usersRef, where("rollNo", "==", rollNo));
       const snapshot = await getDocs(q);
 
@@ -89,7 +93,7 @@ const AttendanceReport = () => {
 
       let storedFaceData = null;
       snapshot.forEach((doc) => {
-        storedFaceData = doc.data().faceData; // Stored bounding box or facial features
+        storedFaceData = doc.data().faceData;
       });
 
       if (!storedFaceData) {
@@ -97,8 +101,18 @@ const AttendanceReport = () => {
         return false;
       }
 
-      // ✅ Compare current face with stored face data
-      const detectedFace = faceData[0].boundingBox;
+      // ✅ DEBUG LOGS TO CHECK DATA
+      console.log("📌 Stored Face Data:", storedFaceData);
+      console.log("📸 Detected Face Data:", faceData[0].boundingBox);
+
+      // ✅ Compare detected face with stored face data
+      const detectedFace = {
+        x: faceData[0].boundingBox.x,
+        y: faceData[0].boundingBox.y,
+        width: faceData[0].boundingBox.width,
+        height: faceData[0].boundingBox.height,
+      };
+
       const isFaceMatched = compareFaces(storedFaceData, detectedFace);
 
       if (isFaceMatched) {
@@ -114,18 +128,16 @@ const AttendanceReport = () => {
     }
   };
 
-  // ✅ FUNCTION TO COMPARE FACES (Improved Matching Algorithm)
+  // ✅ FUNCTION TO COMPARE FACES
   const compareFaces = (storedFace, detectedFace) => {
-    // Improved margin to avoid false negatives
-    const margin = 0.1; // Allowed variation increased slightly
+    const margin = 0.15; // Increased margin for better flexibility
 
-    const xMatch = Math.abs(storedFace.x - detectedFace.x) < margin;
-    const yMatch = Math.abs(storedFace.y - detectedFace.y) < margin;
-    const widthMatch = Math.abs(storedFace.width - detectedFace.width) < margin;
-    const heightMatch = Math.abs(storedFace.height - detectedFace.height) < margin;
-
-    // Ensure at least 3 out of 4 matches for accuracy
-    return (xMatch + yMatch + widthMatch + heightMatch) >= 3;
+    return (
+      Math.abs(storedFace.x - detectedFace.x) < margin &&
+      Math.abs(storedFace.y - detectedFace.y) < margin &&
+      Math.abs(storedFace.width - detectedFace.width) < margin &&
+      Math.abs(storedFace.height - detectedFace.height) < margin
+    );
   };
 
   // ✅ FUNCTION TO MARK ATTENDANCE

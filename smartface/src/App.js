@@ -4,9 +4,9 @@ import AttendanceTracker from "./components/AttendanceTracker";
 import React from 'react'
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
 import AttendanceReport from "./components/AttendanceReport";
 import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   return (

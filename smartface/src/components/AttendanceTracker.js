@@ -74,7 +74,7 @@ const AttendanceTracker = () => {
             },
           });
 
-          toast.success("✅ Attendance Marked & Face Data Saved!", { autoClose: 3000 });
+          toast.success("✅ EnRoll & Face Data Saved!", { autoClose: 3000 });
           console.log(`✅ Attendance Recorded for Roll No: ${rollNo}`);
           stopCamera();
         } catch (error) {

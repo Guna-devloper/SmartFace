@@ -18,6 +18,9 @@ const Home = () => {
         <button className="attendance-btn" onClick={() => navigate("/report")}>
           📝 Mark Attendance
         </button>
+        <button className="attendance-btn" onClick={() => navigate("/dashboard")}>
+          Dashboard
+        </button>
       </div>
     </div>
   );
